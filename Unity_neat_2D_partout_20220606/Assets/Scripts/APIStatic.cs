@@ -8,6 +8,9 @@ namespace neat
     /// </summary>
     public class APIStatic : MonoBehaviour
     {
+        private Vector3 a = new Vector3(1, 1, 1);
+        private Vector3 b = new Vector3(22, 22, 22);
+
         private void Start()
         {
             #region 學習
@@ -35,16 +38,23 @@ namespace neat
             print("隨機範圍 : " + range2);
             #endregion
 
-            int count = Camera.allCameras.Length;
-            print("相機數量 :" + count);
+            
+            print("相機數量 :" +Camera.allCamerasCount);
 
-            if (Application.isEditor)
-            {
-                print("大概是");
-            }
+            print("目前平台" +Application.platform);
 
+            Physics.sleepThreshold = 10;
+            print("睡眠臨界值" + Physics.sleepThreshold);
 
+            Time.timeScale = 0.5f;
+            print("時間大小" + Time.timeScale);
 
+            print("9.999 去掉小數點 4捨5入" + Mathf.Round(9.999f));
+
+            float distance = Vector3.Distance(a, b);
+            print("距離" + distance);
+
+            Application.OpenURL("https://unity.com/");
         }
         private void Update()
         {
@@ -52,11 +62,16 @@ namespace neat
             int range2 = Random.Range(1, 3);
             print("隨機範圍 : " + range2);
             #endregion
-            if (Input.anyKey) 
-            {
-                print("任意按");
-            }
-            Time.timeScale = 1f;
+
+
+            print("任意案" + Input.anyKeyDown);
+            
+            print("遊戲經過時間" + Time.timeSinceLevelLoad);
+
+            print("<color=red>按下空白鍵" + Input.GetKeyDown(KeyCode.Space) +"</ Color >");
+
+            
+
             
              
 
