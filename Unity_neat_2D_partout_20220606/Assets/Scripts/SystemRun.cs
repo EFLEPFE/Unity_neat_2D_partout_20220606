@@ -39,6 +39,19 @@ namespace neat
         #endregion
 
         #region 功能:實作該系統複雜方法
+
+        // 方法 Method
+        // 語法 :
+        //修飾詞 傳回資料類型  方法名稱(參數) { 程式 }
+        /// <summary>
+        /// 跑步功能
+        /// </summary>
+        private void Run()
+        {
+            print("跑步中!!!!!!");
+            rig.velocity = new Vector2(speedRun, rig.velocity.y);
+        }
+
         #endregion
 
         #region 事件:城市入口
@@ -55,14 +68,17 @@ namespace neat
         // 初始化設定 ，例如 : 英雄聯盟 500 塊 . 生命初始化 3 條 ...
         private void Start()
         {
-            print("哈囉  請不要偷看!!!");            
+            //print("哈囉  請不要偷看!!!");            
         }
 
 
         // 更新事件 : 每秒執行約六十次 60FPS Frame
         private void Update()
         {
-            print("<color=yellow>更新事件執行中!!!</color>");
+            //print("<color=yellow>更新事件執行中!!!</color>");
+
+            //呼叫方法：方法名稱(對應的引數);
+            Run();
         }
         #endregion
 
