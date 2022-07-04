@@ -29,8 +29,7 @@ namespace neat
 
         [SerializeField, Header("跑步速度"), Tooltip("5這是跑步速度"), Range(0,100)]
         private float speedRun = 3.5f;
-        [SerializeField, Header("跳躍高度"), Range(0,3000)]
-        private float heightJump = 350;
+        
 
         private Animator ani;
         private Rigidbody2D rig;
@@ -48,8 +47,8 @@ namespace neat
         /// </summary>
         private void Run()
         {
-            print("跑步中!!!!!!");
-            rig.velocity = new Vector2(speedRun, rig.velocity.y);
+            //print("跑步中!!!!!!");
+            rig.velocity = new Vector2(speedRun,rig.velocity.y);
         }
 
         #endregion
@@ -82,6 +81,16 @@ namespace neat
         }
         #endregion
 
+        private void OnEnable()
+        {
+            
+        }
+
+        private void OnDisable()
+        {
+            // 加速度歸零
+            rig.velocity = Vector3.zero;
+        }
     }
 
 }
