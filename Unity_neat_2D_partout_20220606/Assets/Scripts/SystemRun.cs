@@ -28,11 +28,13 @@ namespace neat
         //Range 範圍 : 僅限於數值類型資料 int ,float ,byte ,long
 
         [SerializeField, Header("跑步速度"), Tooltip("5這是跑步速度"), Range(0,100)]
-        private float speedRun = 3.5f;
+        private float speedRun = 10f;
+        private float maxspeedRun = 100;
         
 
         private Animator ani;
         private Rigidbody2D rig;
+
 
 
         #endregion
@@ -48,7 +50,9 @@ namespace neat
         private void Run()
         {
             //print("跑步中!!!!!!");
-            rig.velocity = new Vector2(speedRun,rig.velocity.y);
+            rig.velocity = new Vector2(speedRun, rig.velocity.y);
+
+            
         }
 
         #endregion
@@ -70,6 +74,8 @@ namespace neat
             //print("哈囉  請不要偷看!!!");            
         }
 
+       
+
 
         // 更新事件 : 每秒執行約六十次 60FPS Frame
         private void Update()
@@ -78,6 +84,7 @@ namespace neat
 
             //呼叫方法：方法名稱(對應的引數);
             Run();
+
         }
         #endregion
 

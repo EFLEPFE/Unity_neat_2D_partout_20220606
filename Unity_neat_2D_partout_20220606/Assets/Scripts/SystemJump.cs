@@ -14,6 +14,9 @@ namespace neat
         private Animator ani;
         private Rigidbody2D rig;
         private bool clickJump;
+        private bool isGround;
+        private AudioSource aud;
+
         [SerializeField, Header("檢查地板尺寸")]
         private Vector3 v3CheckGroundSize = Vector3.one;
         [SerializeField, Header("檢查地板位移")]
@@ -22,7 +25,10 @@ namespace neat
         private Color colorCheckGround = new Color(1, 0, 0, 0.5f);
         [SerializeField, Header("檢查地板圖層")]
         private LayerMask layerCheckGround;
-        private bool isGround;
+        [SerializeField, Header("跳躍動畫參數")]
+        private string namejump="跳躍開關";
+        [SerializeField, Header("跳躍音效")]
+        private AudioClip soundJump;
 
 
         #endregion
@@ -41,6 +47,7 @@ namespace neat
         {
             ani = GetComponent<Animator>();
             rig = GetComponent<Rigidbody2D>();
+            aud = GetComponent<AudioSource>();
         }
 
         // Input API  建議在  Update  呼叫
@@ -49,6 +56,7 @@ namespace neat
         {
             Jumpkey();
             CheckGround();
+            UpdateAnimator();
         }
 
         // 一秒固定50次
@@ -88,6 +96,7 @@ namespace neat
             {
                 rig.AddForce(new Vector2(0, heightJump));
                 clickJump = false;
+                aud.PlayOneShot(soundJump, Random.Range(0.7f, 1.5f));
             }
            
         }
@@ -103,6 +112,12 @@ namespace neat
             //print("碰到的物件: " + hit.name);
             isGround = hit;
         }
+
+        private void UpdateAnimator()
+        {
+            ani.SetBool(namejump, !isGround);
+        }
+
 
         #endregion
 
